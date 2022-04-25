@@ -11,7 +11,6 @@ export default function Display() {
     setLoading(true)
     fetchDataFromApi(noOfResults).then((result) => {
       setRandomUsersData(result)
-      console.log('confirm')
       setLoading(false)
     }).catch(err => console.error(err))
   }, [noOfResults])
