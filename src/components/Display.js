@@ -3,14 +3,15 @@ import './Display.css'
 import { fetchDataFromApi } from '../services/Api'
 
 export default function Display() {
-  const [books, setBooks] = useState([])
+  const [randomUsersData, setRandomUsersData] = useState([])
   const [noOfResults, setNoOfResults] = useState(30)
   const [loading, setLoading] = useState(true)
   
   useEffect(() => {
     setLoading(true)
     fetchDataFromApi(noOfResults).then((result) => {
-      setBooks(result)
+      setRandomUsersData(result)
+      console.log('confirm')
       setLoading(false)
     }).catch(err => console.error(err))
   }, [noOfResults])
@@ -38,8 +39,8 @@ export default function Display() {
 
       <div className='books-container'>
         {
-          books.map((item, index) => {
-            if (books.length === index + 1) {
+          randomUsersData.map((item, index) => {
+            if (randomUsersData.length === index + 1) {
               return (
                 <div ref={lastBookRef} className='book-box' key={index}>
                   <img src={item.picture.medium} className='book-cover' alt='' />
